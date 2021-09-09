@@ -25,7 +25,7 @@
 ##########################################################################################
 
 ### Source the function for combining the most recent versions of ALLDATA and Current Quarter 
-source("//PHI_conf/WaitingTimes/Chronic-Pain/RAP/chronic-pain-main/functions/00_combine_data_function.R")
+source("//PHI_conf/WaitingTimes/Chronic-Pain/RAP/chronic-pain-main/functions/01_combine_data_function.R")
 
 
 # Update the dates required as input arguments BEFORE running the function 
