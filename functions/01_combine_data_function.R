@@ -99,8 +99,4 @@ Combine_ALLDATA_Currentquarter <-
     # Will overwrite existing file
     write_xlsx(Discovery, paste0(path_4, "Chronic Pain WT - All Data.xlsx"))
 
-    # Write Excel file for Discovery with required naming convention
-    # Will overwrite existing file
-    write_xlsx(Discovery, paste0(path_3, "Chronic Pain WT - All Data.xlsx"))
-    
   }
