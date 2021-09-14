@@ -89,9 +89,6 @@ Combine_ALLDATA_Currentquarter <-
     # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Discovery\archive
     path_3 = "//PHI_conf/WaitingTimes/Chronic-Pain/Discovery/archive/"
 
-    # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Discovery
-    path_3 = "//PHI_conf/WaitingTimes/Chronic-Pain/Discovery/"
-
     # Write Excel file to archive
     write_xlsx(Discovery, paste0(path_3, date_new_ALLDATA, " Chronic Pain WT - All Data.xlsx"))
     
@@ -105,5 +102,5 @@ Combine_ALLDATA_Currentquarter <-
     # Write Excel file for Discovery with required naming convention
     # Will overwrite existing file
     write_xlsx(Discovery, paste0(path_3, "Chronic Pain WT - All Data.xlsx"))
-
+    
   }
