@@ -34,3 +34,6 @@ library(purrr)        # For iterative functional programming with vectors
 ### 2 - Read all functions from the /functions directory ----
 
 walk(list.files(here("functions"), full.names = TRUE), source)
+
+
+### END OF SCRIPT ###
