@@ -21,16 +21,15 @@
 
 # Copy 14 submissions into project folder at start of each publication process?
 
-# HOW DO I tell R to look in the data folder, list the names of the 14 submissions 
-# and ignore the ALL DATA file containing historical data?
-
 # Get list of files
-here:here("data")
+#filenames <- list.files()
+filenames <- walk(list.files(here("data"), full.names = TRUE), source)
 
-filenames <- list.files()
+# BUT HOW do I tell R to look in the data folder, list the names of the 14 submissions 
+# and ignore the ALL DATA file containing historical data?
+# Use a sub-directory for the 14 submissions?
 
-
-###   2. Read board narrative from submission forms   ###
+### 2 - Read board narrative from submission forms ----
 
 # Initiate a blank data frame
 notes <- data.frame()
@@ -63,7 +62,7 @@ for (file in filenames){
 }
 
 
-###   3. Write Excel file
+### 3 - Write Excel file for the workbook ----
 
 # Set path for exporting tables
 #path_tables = "//PHI_conf/WaitingTimes/Chronic-Pain/Publications/Outputs/Narrative_xxxxxxxx.xlsx"
