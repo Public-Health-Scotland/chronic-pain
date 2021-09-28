@@ -6,7 +6,7 @@
 #   Written for: R Studio Server                                                     
 #   R Version: 3.6.1                                                                 
 #   Packages required: dplyr(1.0.1), readxl(1.3.1), tidyr(1.1.0), writexl(1.3),      
-#                      stringr(1.4.0), here(1.0.1)                                                
+#                      stringr(1.4.0), here(1.0.1), openxlsx(4.1.5)                                                
 #                                                                                    
 #   Description: This script reads the sheet = "NHS Board details",                  
 #                range = "C17:C41" from the 14 Board submissions and                 
@@ -16,18 +16,13 @@
 
 ### 1 - Get file names ----
 
-# NEED TO GET RID OF THIS setwd( )
-#setwd("//PHI_conf/WaitingTimes/Chronic-Pain/Data/Submissions & emails/Current Quarter/")
-
-# Copy 14 submissions into project folder at start of each publication process?
+# TO DO: Copy 14 submissions into project folder at start of each publication process?
 
 # Get list of files
-#filenames <- list.files()
-filenames <- walk(list.files(here("data"), full.names = TRUE), source)
-
 # BUT HOW do I tell R to look in the data folder, list the names of the 14 submissions 
 # and ignore the ALL DATA file containing historical data?
-# Use a sub-directory for the 14 submissions?
+# Use a sub-directory for the 14 submissions, e.g. add "submissions" to here()?
+filenames <- walk(list.files(here("data", "submissions"), full.names = TRUE), source)
 
 ### 2 - Read board narrative from submission forms ----
 
@@ -65,10 +60,7 @@ for (file in filenames){
 ### 3 - Write Excel file for the workbook ----
 
 # Set path for exporting tables
-#path_tables = "//PHI_conf/WaitingTimes/Chronic-Pain/Publications/Outputs/Narrative_xxxxxxxx.xlsx"
-#path_tables = "//PHI_conf/WaitingTimes/Chronic-Pain/RAP/chronic-pain-main/data/output/Narrative_xxxxxxxx.xlsx"
-#data <- read_csv(here("./datafolder/datafile.csv"))
-path_tables =  here::here("data", "output", "Narrative_xxxxxxxx.xlsx")
+path_tables =  here("data", "output", "Narrative_xxxxxxxx.xlsx")
 
 # NEED TO AUTOMATE DATE: Replace xxxxxxxx with date in format, e.g. 2021-06-30
 
