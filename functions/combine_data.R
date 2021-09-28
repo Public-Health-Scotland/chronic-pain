@@ -19,7 +19,7 @@
 #                                                                                    
 ################################################################################
 
-### Function for combining ALLDATA and the Current quarter files
+### 1 - Function for combining ALLDATA and the Current quarter files ----
 combine_data <- 
   function(previous_qtr_end, current_qtr_end)
   {
