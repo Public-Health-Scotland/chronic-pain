@@ -100,3 +100,6 @@ combine_data <-
     write_xlsx(discovery, paste0(path_4, "Chronic Pain WT - All Data.xlsx"))
 
   }
+
+
+### END OF SCRIPT ###
