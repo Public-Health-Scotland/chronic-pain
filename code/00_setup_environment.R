@@ -10,6 +10,13 @@
 #                                                                                   
 ################################################################################
 
+### 0 - Manual Variable(s) - TO UPDATE ----
+
+# UPDATE - Last day of reporting quarter (ddmmyyyy)
+
+current_qtr_end <- lubridate::dmy(30062021)
+
+
 ### 1 - Load libraries required ----
 
 library(dplyr)        # For data manipulation in the "tidy" way
@@ -31,7 +38,12 @@ library(openxlsx)     # For reading and writing Excel files
 library(purrr)        # For iterative functional programming with vectors
 
 
-### 2 - Read all functions from the /functions directory ----
+### 2 - Derive date variables
+
+previous_qtr_end <- as_date(cut(ymd(current_qtr_end), "quarter")) - 1
+
+
+### 3 - Read all functions from the /functions directory ----
 
 walk(list.files(here("functions"), full.names = TRUE), source)
 
