@@ -23,7 +23,7 @@
 combine_data <- 
   function(previous_qtr_end, current_qtr_end)
   {
-    ###   Read in ALL DATA file and Current Quarter file   ###
+    ### 1 - Read in ALL DATA file and Current Quarter file ----
     
     # Set path for most recent ALLDATA file
     path_alldata = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
@@ -48,12 +48,12 @@ combine_data <-
                        mutate(`Report Date` = as.Date(`Report Date`, "%Y%m%d"))
     
     
-    ###   Bind the 2 dataframes   ###
+    ### 2 - Bind the 2 dataframes ----
     # Use rbind to bind the current quarter to the bottom of ALL DATA
     new_df <- rbind(data, current)
     
     
-    ###   Create df for Discovery with 2 new variables
+    ### 3 - Create df for Discovery with 2 new variables ----
     discovery <- new_df %>%
       mutate(WaitDays = str_split_fixed(WaitTime, "[(]",  2)[,1]) %>%
       mutate(WaitWeeks = str_split_fixed(WaitTime, "[(]",  2)[,2]) %>%
@@ -63,7 +63,7 @@ combine_data <-
     discovery$WaitDays <- trimws(discovery$WaitDays)
     
     # Recode "> 728 days" 
-    discovery <- discovery %>% 
+    discovery %<>% 
       mutate(WaitDays = recode(WaitDays, 
                                 `> 728 days` = "728 days or more",
                                 .default = levels(WaitDays)))
@@ -72,7 +72,7 @@ combine_data <-
     discovery$WaitWeeks <- str_extract(discovery$WaitWeeks, "[0-9]+")
     
     
-    ### Write dataframes to an Excel file in 3 locations 
+    ### 4 - Write dataframes to an Excel file in 4 locations ----
     
     # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Data\Database
     path_1 = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
