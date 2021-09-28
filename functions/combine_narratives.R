@@ -14,22 +14,23 @@
 #                                                                                    
 ################################################################################
 
-### 1 - Get file names ----
+### Function for combining Board narratives from 14 submissions 
+combine_narratives <- 
+  function(current_qtr_end)
+  {
+    
+    ### 1 - Get file names ----
 
-# TO DO: Copy 14 submissions into project folder at start of each publication process?
+    # Get list of files
+    
+    filenames <- walk(list.files(here("data", "submissions"), full.names = TRUE), source)
 
-# Get list of files
-# BUT HOW do I tell R to look in the data folder, list the names of the 14 submissions 
-# and ignore the ALL DATA file containing historical data?
-# Use a sub-directory for the 14 submissions, e.g. add "submissions" to here()?
-filenames <- walk(list.files(here("data", "submissions"), full.names = TRUE), source)
+    ### 2 - Read board narrative from submission forms ----
 
-### 2 - Read board narrative from submission forms ----
+    # Initiate a blank data frame
+    notes <- data.frame()
 
-# Initiate a blank data frame
-notes <- data.frame()
-
-for (file in filenames){
+    for (file in filenames){
   
     temp_notes <- read_excel(file, sheet = "NHS Board details", range = "C17:C41") %>%
       rename(`Board narrative` = `...1`)
@@ -51,21 +52,24 @@ for (file in filenames){
     rm(boardname)
     rm(temp_notes)
     
-    notes %<>%
+    notes %<>% 
       mutate(`Board narrative` = str_remove_all(`Board narrative`, "\\.xlsx$"))
     
-}
+    }
 
 
-### 3 - Write Excel file for the workbook ----
+    ### 3 - Write Excel file for the workbook ----
 
-# Set path for exporting tables
-path_tables =  here("data", "output", "Narrative_xxxxxxxx.xlsx")
+    # Set path for saving Board narrative
+    path_narrative =  here("data", "output")
+    #path_tables =  here("data", "output", "Narrative_xxxxxxxx.xlsx")
 
-# NEED TO AUTOMATE DATE: Replace xxxxxxxx with date in format, e.g. 2021-06-30
-
-# Write Excel file
-write_xlsx(notes, path_tables)
+    # Write Excel file to output folder
+    
+    #write_xlsx(notes, path_tables)
+    write_xlsx(notes, paste0(path_narrative, current_qtr_end, "_Narrative.xlsx" ))
+    
+  }
 
 
 ### END OF SCRIPT ###
