@@ -38,7 +38,7 @@ library(openxlsx)     # For reading and writing Excel files
 library(purrr)        # For iterative functional programming with vectors
 
 
-### 2 - Derive date variables
+### 2 - Derive date variables ----
 
 previous_qtr_end <- as_date(cut(ymd(current_qtr_end), "quarter")) - 1
 
