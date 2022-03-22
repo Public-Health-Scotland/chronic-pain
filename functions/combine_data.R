@@ -25,22 +25,18 @@ combine_data <-
   {
     ### 1 - Read in ALL DATA file and Current Quarter file ----
     
-    # Set path for most recent ALLDATA file
-    path_alldata = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
-    
     # Read in most recent ALLDATA file
-    data <- read_excel(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"),
+    #data <- read_excel(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"),
+    data <- read_excel(here("data", "input", paste0(previous_qtr_end, " ALL DATA.xlsx")), 
                        col_types = c("text", "date", "text", "numeric", "numeric", "numeric", "numeric",
                                      "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
                                      "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
                                      "numeric", "numeric")) %>% 
                        mutate(`Report Date` = as.Date(`Report Date`, "%Y%m%d"))
     
-    # Set path for current quarter file after saving it as Excel workbook without macro/formulas
-    path_currentquarter = "//PHI_conf/WaitingTimes/Chronic-Pain/R development work/Data/Current Quarter_"
-    
     # Read in Current data but need to save as Excel workbook without macro / formulas                    
-    current <- read_excel(paste0(path_currentquarter, current_qtr_end, ".xlsx"),
+    #current <- read_excel(paste0(path_currentquarter, current_qtr_end, ".xlsx"),
+    current <- read_excel(here("data", "input", paste0(current_qtr_end, ".xlsx")),
                           col_types = c("text", "date", "text", "numeric", "numeric", "numeric", "numeric",
                                         "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
                                         "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
@@ -72,32 +68,32 @@ combine_data <-
     discovery$WaitWeeks <- str_extract(discovery$WaitWeeks, "[0-9]+")
     
     
-    ### 4 - Write dataframes to an Excel file in 4 locations ----
+    ### 4 - Write dataframes to 2 Excel files ----
     
     # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Data\Database
-    path_1 = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
+    #path_1 = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
     
     # Write Excel file
-    write_xlsx(new_df, paste0(path_1, current_qtr_end, " ALL DATA.xlsx"))
+    #write_xlsx(new_df, paste0(path_1, current_qtr_end, " ALL DATA.xlsx"))
     
     # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Data\Database\previous versions
-    path_2 = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/previous versions/"
+    #path_2 = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/previous versions/"
     
-    # Write Excel file
-    write_xlsx(new_df, paste0(path_2, current_qtr_end, " ALL DATA.xlsx"))
+    # Write updated ALL DATA file
+    write_xlsx(new_df, paste0(path_newalldata, current_qtr_end, " ALL DATA.xlsx"))
     
     # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Discovery\archive
-    path_3 = "//PHI_conf/WaitingTimes/Chronic-Pain/Discovery/archive/"
+    #path_3 = "//PHI_conf/WaitingTimes/Chronic-Pain/Discovery/archive/"
 
-    # Write Excel file to archive
-    write_xlsx(discovery, paste0(path_3, current_qtr_end, " Chronic Pain WT - All Data.xlsx"))
+    # Write file for Discovery team
+    write_xlsx(discovery, paste0(path_discovery, current_qtr_end, " Chronic Pain WT - All Data.xlsx"))
     
     # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Discovery
-    path_4 = "//PHI_conf/WaitingTimes/Chronic-Pain/Discovery/"
+    #path_4 = "//PHI_conf/WaitingTimes/Chronic-Pain/Discovery/"
     
     # Write Excel file for Discovery with required naming convention
     # Will overwrite existing file
-    write_xlsx(discovery, paste0(path_4, "Chronic Pain WT - All Data.xlsx"))
+    #write_xlsx(discovery, paste0(path_4, "Chronic Pain WT - All Data.xlsx"))
 
   }
 
