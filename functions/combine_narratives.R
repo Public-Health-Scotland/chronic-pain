@@ -61,7 +61,7 @@ combine_narratives <-
     ### 3 - Write Excel file for the workbook ----
 
     # Set path for saving Board narrative
-    path_narrative =  here("data", "output")
+    #path_narrative =  here("data", "output")
     #path_tables =  here("data", "output", "Narrative_xxxxxxxx.xlsx")
 
     # Write Excel file to output folder

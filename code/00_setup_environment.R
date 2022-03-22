@@ -43,7 +43,33 @@ library(purrr)        # For iterative functional programming with vectors
 previous_qtr_end <- as_date(cut(ymd(current_qtr_end), "quarter")) - 1
 
 
-### 3 - Read all functions from the /functions directory ----
+### 3 - Set file paths ----
+
+path_alldata = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
+
+path_lookup = "//PHI_conf/WaitingTimes/Chronic-Pain/R development work/Lookups/"
+
+path_narrative =  here("data", "output")
+
+path_currentquarter = here("data", "output")
+
+
+### 4 - Read data files in external folders into project ----
+
+# Read in 14 submissions for current quarter
+
+#file.copy("source_file.txt", "destination_folder")
+
+# Read in ALL DATA file from previous quarter
+
+file.copy(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"), here("data", "input"))
+
+# Read in population lookup for use in referral rates calculation
+
+file.copy(paste0(path_lookup, "Populationestimatemid2020_18+.xlsx"), here("lookups"))
+
+
+### 5 - Read all functions from the /functions directory ----
 
 walk(list.files(here("functions"), full.names = TRUE), source)
 
