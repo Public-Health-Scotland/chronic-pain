@@ -51,6 +51,8 @@ path_alldata = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
 
 path_lookup = "//PHI_conf/WaitingTimes/Chronic-Pain/R development work/Lookups/"
 
+path_readsubmissions = here("data", "submissions")
+
 path_narrative =  here("data", "output")
 
 path_currentquarter = here("data", "input")
