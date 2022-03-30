@@ -14,10 +14,17 @@
 #                                                                                   
 ################################################################################
 
-### 1 - Get file names ----
+### 1 - Get file names and set path ----
 
 # Get list of files
 files <- walk(list.files(here("data", "submissions"), full.names = TRUE), source)
+
+# Path for reading data from the 14 submissions in the data/submissions folder
+#path_readsubmissions = paste0(here("data", "submissions", files, ".xlsx"))
+#path_readsubmissions = str_glue(here("data", "submissions", {files} ".xlsx"))
+
+# Set path to use in the read_submission function
+path_readsubmissions = here("data", "submissions", files, ".xlsx")
 
 
 ### 2 - Use map() to run the read_submission function
