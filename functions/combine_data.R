@@ -11,11 +11,9 @@
 #   Description: This function combines the historical ALL DATA file                 
 #   with data from the Current Quarter                                               
 #                                                                                      
-#   NOTE: The output file will be saved to 4 locations:                                             
-#   \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Data\Database             
-#   \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Data\Database\previous versions                                                                  
-#   \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Discovery 
-#   \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Discovery\archive
+#   NOTE: Two output files will be saved to the output folder:  
+#   - One file will be the updated ALL DATA file that will be used for analysis
+#   - One file will be for Discovery   
 #                                                                                    
 ################################################################################
 
