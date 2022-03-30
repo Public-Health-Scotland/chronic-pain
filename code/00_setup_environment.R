@@ -45,20 +45,25 @@ previous_qtr_end <- as_date(cut(ymd(current_qtr_end), "quarter")) - 1
 
 ### 3 - Set file paths ----
 
+# Path for copying in 14 quarterly submissions for most recent quarter
 path_submissions = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/Submissions & emails/Current Quarter/"
 
+# Path for copying in ALL DATA file from previous quarter
 path_alldata = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
 
-path_lookup = "//PHI_conf/WaitingTimes/Chronic-Pain/R development work/Lookups/"
+# Path for copying in lookup file for rate of referral calculation
+path_lookup = "//PHI_conf/WaitingTimes/Chronic-Pain/R development work/Lookups/Populationestimatemid2020_18+.xlsx"
 
-path_readsubmissions = here("data", "submissions")
-
+# Path for writing out the Board Narrative column for the workbook
 path_narrative =  here("data", "output")
 
+# Path for writing out current quarter dataframe
 path_currentquarter = here("data", "input")
 
+# Path for writing out updated ALL DATA file
 path_discovery =  here("data", "output")
 
+# Path for writing out file for Discovery
 path_newalldata = here("data", "output")
 
 
@@ -80,7 +85,7 @@ file.copy(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"), here("data",
 
 # Read in population lookup for use in referral rates calculation
 
-file.copy(paste0(path_lookup, "Populationestimatemid2020_18+.xlsx"), here("lookups"))
+file.copy(path_lookup, here("lookups"))
 
 
 ### 5 - Read all functions from the /functions directory ----
