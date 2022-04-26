@@ -46,7 +46,7 @@ previous_qtr_end <- as_date(cut(ymd(current_qtr_end), "quarter")) - 1
 ### 3 - Set file paths ----
 
 # Path for copying in 14 quarterly submissions for most recent quarter
-path_submissions = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/Submissions & emails/Current Quarter/"
+path_submissions = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Submissions & emails/Current Quarter/"
 
 # Path for copying in ALL DATA file from previous quarter
 path_alldata = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
@@ -70,26 +70,19 @@ path_newalldata = here("data", "output")
 ### 4 - Read data files in external folders into project ----
 
 # Read in 14 submissions for current quarter
-
-# Are lines 66 - 67 correct? 
-#Will the 14 files be copied? 
-#Not sure what source does?
-submissions <- walk(list.files("path_submissions", full.names = TRUE), source)
+submissions <- list.files(path_submissions, full.names = T)
 file.copy(submissions, here("data", "submissions"))
 
 
 # Read in ALL DATA file from previous quarter
-
 file.copy(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"), here("data", "input"))
 
 
 # Read in population lookup for use in referral rates calculation
-
 file.copy(path_lookup, here("lookups"))
 
 
 ### 5 - Read all functions from the /functions directory ----
-
 walk(list.files(here("functions"), full.names = TRUE), source)
 
 
