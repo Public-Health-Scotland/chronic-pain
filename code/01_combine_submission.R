@@ -21,7 +21,7 @@
 files <- list.files(here("data", "submissions"), full.names = TRUE)
 
 
-### 2 - Use map() to run the read_submission function
+### 2 - Use map_dfr() to run the read_submission function and produce one dataframe
 
 current_quarter <- map_dfr(files, read_submission, current_qtr_end)
 
