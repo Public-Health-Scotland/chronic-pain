@@ -24,7 +24,6 @@ combine_data <-
     ### 1 - Read in ALL DATA file and Current Quarter file ----
     
     # Read in most recent ALLDATA file
-    #data <- read_excel(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"),
     data <- read_excel(here("data", "input", paste0(previous_qtr_end, " ALL DATA.xlsx")), 
                        col_types = c("text", "date", "text", "numeric", "numeric", "numeric", "numeric",
                                      "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
@@ -32,15 +31,23 @@ combine_data <-
                                      "numeric", "numeric")) %>% 
                        mutate(`Report Date` = as.Date(`Report Date`, "%Y%m%d"))
     
-    # Read in Current data but need to save as Excel workbook without macro / formulas                    
-    #current <- read_excel(paste0(path_currentquarter, current_qtr_end, ".xlsx"),
-    current <- read_excel(here("data", "input", paste0(current_qtr_end, ".xlsx")),
-                          col_types = c("text", "date", "text", "numeric", "numeric", "numeric", "numeric",
-                                        "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
-                                        "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
-                                        "numeric", "numeric")) %>% 
-                       mutate(`Report Date` = as.Date(`Report Date`, "%Y%m%d"))
     
+    
+    # Read in data for current quarter, which has been saved as .rds in input folder
+    
+    # Need to change bit below to read in .rds that has been saved to input folder
+    # This https://mgimond.github.io/ES218/Week02b.html suggests col types 
+    # will be preserved. Is this correct? 
+    
+    current <- read_rds(here("data", "input", paste0(current_qtr_end, ".rds")))
+    
+    # current <- read_excel(here("data", "input", paste0(current_qtr_end, ".xlsx")),
+    #                       col_types = c("text", "date", "text", "numeric", "numeric", "numeric", "numeric",
+    #                                     "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
+    #                                     "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
+    #                                     "numeric", "numeric")) %>% 
+    #                    mutate(`Report Date` = as.Date(`Report Date`, "%Y%m%d"))
+    # 
     
     ### 2 - Bind the 2 dataframes ----
     # Use rbind to bind the current quarter to the bottom of ALL DATA
@@ -68,31 +75,12 @@ combine_data <-
     
     ### 4 - Write dataframes to 2 Excel files ----
     
-    # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Data\Database
-    #path_1 = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
-    
-    # Write Excel file
-    #write_xlsx(new_df, paste0(path_1, current_qtr_end, " ALL DATA.xlsx"))
-    
-    # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Data\Database\previous versions
-    #path_2 = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/previous versions/"
-    
     # Write updated ALL DATA file
-    write_xlsx(new_df, paste0(path_newalldata, current_qtr_end, " ALL DATA.xlsx"))
+    write_xlsx(new_df, paste0(path_output, current_qtr_end, " ALL DATA.xlsx"))
     
-    # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Discovery\archive
-    #path_3 = "//PHI_conf/WaitingTimes/Chronic-Pain/Discovery/archive/"
-
     # Write file for Discovery team
-    write_xlsx(discovery, paste0(path_discovery, current_qtr_end, " Chronic Pain WT - All Data.xlsx"))
+    write_xlsx(discovery, paste0(path_output, current_qtr_end, " Chronic Pain WT - All Data.xlsx"))
     
-    # Set path for exporting to \\nssstats01.csa.scot.nhs.uk\WaitingTimes\Chronic-Pain\Discovery
-    #path_4 = "//PHI_conf/WaitingTimes/Chronic-Pain/Discovery/"
-    
-    # Write Excel file for Discovery with required naming convention
-    # Will overwrite existing file
-    #write_xlsx(discovery, paste0(path_4, "Chronic Pain WT - All Data.xlsx"))
-
   }
 
 
