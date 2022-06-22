@@ -6,7 +6,7 @@
 #   Written for: R Studio Server                                                     
 #   R Version: 3.6.1                                                                 
 #                                                                                   
-#  Description: This script sets up the environment                                 
+#   Description: This script sets up the environment                                 
 #                                                                                   
 ################################################################################
 
@@ -14,7 +14,7 @@
 
 # UPDATE - Last day of reporting quarter (ddmmyyyy)
 
-current_qtr_end <- lubridate::dmy(30062021)
+current_qtr_end <- lubridate::dmy(31122021)
 
 
 ### 1 - Load libraries required ----
@@ -54,17 +54,13 @@ path_alldata = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
 # Path for copying in lookup file for rate of referral calculation
 path_lookup = "//PHI_conf/WaitingTimes/Chronic-Pain/R development work/Lookups/Populationestimatemid2020_18+.xlsx"
 
-# Path for writing out the Board Narrative column for the workbook
-path_narrative =  here("data", "output")
+# Path for writing out the current quarter dataframe that will be used to update
+# the ALL DATA file
+path_input = here("data", "input")
 
-# Path for writing out current quarter dataframe
-path_currentquarter = here("data", "input")
-
-# Path for writing out updated ALL DATA file
-path_discovery =  here("data", "output")
-
-# Path for writing out file for Discovery
-path_newalldata = here("data", "output")
+# Path for writing outputs for the workbook, the Discovery file 
+# and the new updated ALL DATA file
+path_output =  here("data", "output")
 
 
 ### 4 - Read data files in external folders into project ----
