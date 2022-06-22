@@ -16,17 +16,17 @@
 
 ### Function for combining 14 quarterly submissions 
 read_narrative <- 
-  function(current_qtr_end)
+  function(files, current_qtr_end)
   {
     ### 1 - Read in Board name ----
     
     # Read in Board name from the B8 on NHS Board details sheet
-    board <- read.xlsx(path_readsubmissions, sheet = 4, skipEmptyRows = TRUE, 
+    board <- read.xlsx(files, sheet = 4, skipEmptyRows = TRUE, 
                        cols = c(2, 2), rows = c(7, 8)) %>%
       rename(`Health Board` = `Health.Board`)
     
     ### 2 - Read in narrative ----
-    notes <- read.xlsx(path_readsubmissions, sheet = 4, skipEmptyRows = TRUE, 
+    notes <- read.xlsx(files, sheet = 4, skipEmptyRows = TRUE, 
                        cols = c(2, 2), rows = c(17, 41)) %>%
       rename(`Board narrative` = `...1`)
     
