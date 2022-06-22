@@ -17,33 +17,18 @@
 ### 1 - Get file names and set path ----
 
 # Get list of files
-files <- walk(list.files(here("data", "submissions"), full.names = TRUE), source)
 
-# Path for reading data from the 14 submissions in the data/submissions folder
-#path_readsubmissions = paste0(here("data", "submissions", files, ".xlsx"))
-#path_readsubmissions = str_glue(here("data", "submissions", {files} ".xlsx"))
-
-# Set path to use in the read_submission function
-path_readsubmissions = here("data", "submissions", files, ".xlsx")
+files <- list.files(here("data", "submissions"), full.names = TRUE)
 
 
 ### 2 - Use map() to run the read_submission function
-current_quarter <- map_dfr(files, read_submission)
+
+current_quarter <- map_dfr(files, read_submission, current_qtr_end)
 
 
 ### 3 - Write file with current_quarter_end date included in file name  ----
 
-# NEED TO decide if writing current_quarter file is needed longer-term? Or would 
-# current_quarter be created in R and then added to the bottom of the ALL DATA 
-# file without saving current_quarter first?
-
-# Is line 36 correct - I think map_dfr will produce a df called current_quarter 
-# that will contain all 14 submissions bound together using row binding?
-
-write.xlsx(current_quarter, paste0(path_currentquarter, current_qtr_end, ".xlsx"))
-
-# Or should I use write_RDS instead?
-#write_rds(current_quarter, paste0(path_currentquarter, current_qtr_end, ".rds"))
+write_rds(current_quarter, paste0(path_input, current_qtr_end, ".rds"))
 
 
 ### END OF SCRIPT ###
