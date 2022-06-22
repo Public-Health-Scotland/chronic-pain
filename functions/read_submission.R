@@ -15,21 +15,16 @@
 
 ### Function for combining 14 quarterly submissions 
 read_submission <- 
-  function(current_qtr_end)
+  function(files, current_qtr_end)
   {
     ### 1 - Create df containing current_quarter_end and read in Board name ----
-    
-    # Read in end date of the quarter
-    #date <- read.xlsx(path, sheet = 4, skipEmptyRows = TRUE, 
-    #                  cols = c(4, 4), rows = c(14, 15), detectDates = TRUE) %>%
-    #  rename(`Report Date` = `End.date`)
     
     # Create dataframe containing current_qtr_end
     date <- as.data.frame(current_qtr_end) %>%
       rename(`Report Date` = `current_qtr_end`)
     
     # Read in Board name from the B8 on NHS Board details sheet
-    board <- read.xlsx(path_readsubmissions, sheet = 4, skipEmptyRows = TRUE, 
+    board <- read.xlsx(files, sheet = 4, skipEmptyRows = TRUE, 
                        cols = c(2, 2), rows = c(7, 8)) %>%
       rename(`Health Board` = `Health.Board`)
     
@@ -38,7 +33,7 @@ read_submission <-
     
     # Read in WaitTime bands 
     
-    waittime <- read.xlsx(path_readsubmissions, sheet = 5, skipEmptyRows = FALSE, 
+    waittime <- read.xlsx(files, sheet = 5, skipEmptyRows = FALSE, 
                        cols = 1:108, rows = c(4, 5)) %>%
       select(-`If.there.are.no.patients.then."0".(zero).should.be.entered.`) %>%
       gather(key = "key",
@@ -50,7 +45,7 @@ read_submission <-
     
     # Read in all adjusted data
     
-    adj <- read.xlsx(path_readsubmissions, sheet = 5,
+    adj <- read.xlsx(files, sheet = 5,
                      cols = 3:108, rows = c(5:10)) %>%
       #mutate_at(c(2:106), as.numeric) %>%
       gather(Wait_Time, count, `0.-.7.days.(<=.1.week)`:`>.728.days.(>105.weeks)`) %>%
@@ -70,7 +65,7 @@ read_submission <-
     ### 4 - Read in unadjusted data ----
     
     # Read in all unadjusted data
-    unadj <- read.xlsx(path_readsubmissions, sheet = 6,
+    unadj <- read.xlsx(files, sheet = 6,
                        cols = 3:108, rows = c(5:10)) %>%
       #mutate_at(c(2:106), as.numeric) %>%
       gather(Wait_Time, count, `0.-.7.days.(<=.1.week)`:`>.728.days.(>105.weeks)`) %>%
@@ -92,14 +87,14 @@ read_submission <-
     
     ### 5 - Read in Referrals data ----
     
-    ref_pc <- read.xlsx(path_readsubmissions, sheet = 7, skipEmptyRows = TRUE,
+    ref_pc <- read.xlsx(files, sheet = 7, skipEmptyRows = TRUE,
                         cols = 2:5, rows = c(8, 9)) %>%
       rename(`Pain Clinic Referrals` = `Rejected.referrals`) %>%
       rename(`Pain clinic rejected referrals` = `Total.referrals`) %>%
       rename(`No of 1st Pain Clinic appointments` = `Number.of.patients.seen`) %>%
       rename(`No of 1st appointment pain clinic DNA's` = `Number.of.DNAs.for.1st.appt`)
     
-    ref_pp <- read.xlsx(path_readsubmissions, sheet = 7, skipEmptyRows = TRUE,
+    ref_pp <- read.xlsx(files, sheet = 7, skipEmptyRows = TRUE,
                         cols = 2:5, rows = c(8, 10)) %>%
       rename(`Pain Psychology Referrals` = `Rejected.referrals`) %>%
       rename(`Pain Psychology rejected referrals` = `Total.referrals`) %>%
@@ -109,7 +104,7 @@ read_submission <-
     
     ### 6 - Read in Removals data  ----
     
-    removals <- read.xlsx(path_readsubmissions, sheet = 8, skipEmptyRows = TRUE, 
+    removals <- read.xlsx(files, sheet = 8, skipEmptyRows = TRUE, 
                           cols = 2:3, rows = c(8, 9)) %>%
       rename(`Pain clinic removal reasons` = `Removed.from.list.for.Pain.clinic./service`) %>%
       rename(`Pain Psychology removal reasons` = `Removed.from.list.for.Pain.psychology`)
