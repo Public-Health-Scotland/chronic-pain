@@ -17,71 +17,56 @@
 #                                                                                    
 ################################################################################
 
-### Function for combining ALLDATA and the Current quarter files 
-combine_data <- 
-  function(previous_qtr_end, current_qtr_end)
-  {
-    ### 1 - Read in ALL DATA file and Current Quarter file ----
+### 1 - Read in ALL DATA file and Current Quarter file ----
     
-    # Read in most recent ALLDATA file
-    data <- read_excel(here("data", "input", paste0(previous_qtr_end, " ALL DATA.xlsx")), 
-                       col_types = c("text", "date", "text", "numeric", "numeric", "numeric", "numeric",
-                                     "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
-                                     "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
-                                     "numeric", "numeric")) %>% 
-                       mutate(`Report Date` = as.Date(`Report Date`, "%Y%m%d"))
+# Read in most recent ALLDATA file
+data <- read_excel(here("data", "input", paste0(previous_qtr_end, " ALL DATA.xlsx")), 
+                   col_types = c("text", "date", "text", "numeric", "numeric", "numeric", "numeric",
+                                 "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
+                                 "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
+                                 "numeric", "numeric")) %>%
+  mutate(`Report Date` = as.Date(`Report Date`, "%Y%m%d"))    
+
+
+# Read in data for current quarter, which has been saved as .rds in input folder
     
+# This https://mgimond.github.io/ES218/Week02b.html suggests col types 
+# will be preserved. Is this correct? 
     
-    
-    # Read in data for current quarter, which has been saved as .rds in input folder
-    
-    # Need to change bit below to read in .rds that has been saved to input folder
-    # This https://mgimond.github.io/ES218/Week02b.html suggests col types 
-    # will be preserved. Is this correct? 
-    
-    current <- read_rds(here("data", "input", paste0(current_qtr_end, ".rds")))
-    
-    # current <- read_excel(here("data", "input", paste0(current_qtr_end, ".xlsx")),
-    #                       col_types = c("text", "date", "text", "numeric", "numeric", "numeric", "numeric",
-    #                                     "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
-    #                                     "numeric", "numeric", "numeric", "numeric", "numeric", "numeric",
-    #                                     "numeric", "numeric")) %>% 
-    #                    mutate(`Report Date` = as.Date(`Report Date`, "%Y%m%d"))
-    # 
-    
-    ### 2 - Bind the 2 dataframes ----
-    # Use rbind to bind the current quarter to the bottom of ALL DATA
-    new_df <- rbind(data, current)
+current <- read_rds(here("data", "input", paste0(current_qtr_end, ".rds")))
     
     
-    ### 3 - Create df for Discovery with 2 new variables ----
-    discovery <- new_df %>%
-      mutate(WaitDays = str_split_fixed(WaitTime, "[(]",  2)[,1]) %>%
-      mutate(WaitWeeks = str_split_fixed(WaitTime, "[(]",  2)[,2]) %>%
-      select(`Health Board`, `Report Date`, WaitTime, WaitDays, WaitWeeks, everything())
-    
-    # Trim trailing white space
-    discovery$WaitDays <- trimws(discovery$WaitDays)
-    
-    # Recode "> 728 days" 
-    discovery %<>% 
-      mutate(WaitDays = recode(WaitDays, 
-                                `> 728 days` = "728 days or more",
-                                .default = levels(WaitDays)))
-    
-    # Extract digits from strings
-    discovery$WaitWeeks <- str_extract(discovery$WaitWeeks, "[0-9]+")
+### 2 - Bind the 2 dataframes ----
+# Use rbind to bind the current quarter to the bottom of ALL DATA
+new_df <- rbind(data, current)    
     
     
-    ### 4 - Write dataframes to 2 Excel files ----
-    
-    # Write updated ALL DATA file
-    write_xlsx(new_df, paste0(path_output, current_qtr_end, " ALL DATA.xlsx"))
-    
-    # Write file for Discovery team
-    write_xlsx(discovery, paste0(path_output, current_qtr_end, " Chronic Pain WT - All Data.xlsx"))
-    
-  }
+### 3 - Create df for Discovery with 2 new variables ----
+discovery <- new_df %>%
+  mutate(WaitDays = str_split_fixed(WaitTime, "[(]",  2)[,1]) %>%
+  mutate(WaitWeeks = str_split_fixed(WaitTime, "[(]",  2)[,2]) %>%
+  select(`Health Board`, `Report Date`, WaitTime, WaitDays, WaitWeeks, everything())
+
+# Trim trailing white space
+discovery$WaitDays <- trimws(discovery$WaitDays)
+
+# Recode "> 728 days" 
+discovery %<>% 
+  mutate(WaitDays = recode(WaitDays, 
+                           `> 728 days` = "728 days or more",
+                           .default = levels(WaitDays)))
+
+# Extract digits from strings
+discovery$WaitWeeks <- str_extract(discovery$WaitWeeks, "[0-9]+")
+
+
+### 4 - Write dataframes as 2 Excel files to the output folder ----
+
+# Write updated ALL DATA file
+write_xlsx(new_df, paste0(path_output, current_qtr_end, " ALL DATA.xlsx"))
+
+# Write file for Discovery team
+write_xlsx(discovery, paste0(path_output, current_qtr_end, " Chronic Pain WT - All Data.xlsx"))
 
 
 ### END OF SCRIPT ###
