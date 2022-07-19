@@ -33,7 +33,7 @@ data <- read_excel(here("data", "input", paste0(previous_qtr_end, " ALL DATA.xls
 # This https://mgimond.github.io/ES218/Week02b.html suggests col types 
 # will be preserved. Is this correct? 
     
-current <- read_rds(here("data", "input", paste0(current_qtr_end, ".rds")))
+current <- read_rds(here("data", "input", paste0(current_qtr_end, "current.rds")))
     
     
 ### 2 - Bind the 2 dataframes ----
