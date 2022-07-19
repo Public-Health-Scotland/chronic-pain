@@ -67,15 +67,15 @@ path_output =  here("data", "output")
 
 # Read in 14 submissions for current quarter
 submissions <- list.files(path_submissions, full.names = T)
-file.copy(submissions, here("data", "submissions"))
+file.copy(submissions, here("data", "submissions"), overwrite = TRUE)
 
 
 # Read in ALL DATA file from previous quarter
-file.copy(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"), here("data", "input"))
+file.copy(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"), here("data", "input"), overwrite = TRUE)
 
 
 # Read in population lookup for use in referral rates calculation
-file.copy(path_lookup, here("lookups"))
+file.copy(path_lookup, here("lookups"), overwrite = TRUE)
 
 
 ### 5 - Read all functions from the /functions directory ----
