@@ -20,9 +20,6 @@
 
 files <- list.files(here("data", "submissions"), full.names = TRUE)
 
-# Set path to use in the read_narrative function
-#path_readsubmissions = here("data", "submissions", files, ".xlsx")
-
 
 ### 2 - Use map() to run the read_narrative function
 
