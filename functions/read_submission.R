@@ -103,7 +103,7 @@ read_submission <-
     
     # Include column 1 and then drop it to deal with a full row of NAs otherwise
     # end up with empty df and cbind() doesn't work
-    ref_pp <- read.xlsx(path, sheet = 7, skipEmptyRows = TRUE,
+    ref_pp <- read.xlsx(files, sheet = 7, skipEmptyRows = TRUE,
                         cols = 1:5, rows = c(8, 10)) %>%
       select(-X1) %>%
       rename(`Pain Psychology Referrals` = `Total.referrals`) %>%

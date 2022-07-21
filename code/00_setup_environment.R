@@ -56,11 +56,11 @@ path_lookup = "//PHI_conf/WaitingTimes/Chronic-Pain/R development work/Lookups/P
 
 # Path for writing out the current quarter dataframe that will be used to update
 # the ALL DATA file
-path_input = here("data", "input")
+path_input = here("data", "input/")
 
 # Path for writing outputs for the workbook, the Discovery file 
 # and the new updated ALL DATA file
-path_output =  here("data", "output")
+path_output =  here("data", "output/")
 
 
 ### 4 - Read data files in external folders into project ----
