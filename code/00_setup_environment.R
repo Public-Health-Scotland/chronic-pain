@@ -71,7 +71,7 @@ file.copy(submissions, here("data", "submissions"), overwrite = TRUE)
 
 
 # Read in ALL DATA file from previous quarter
-file.copy(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"), here("data", "input"), overwrite = TRUE)
+file.copy(paste0(path_alldata, previous_qtr_end, " ALL DATA.xlsx"), path_input, overwrite = TRUE)
 
 
 # Read in population lookup for use in referral rates calculation
