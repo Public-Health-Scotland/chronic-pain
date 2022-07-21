@@ -94,10 +94,20 @@ read_submission <-
       rename(`No of 1st Pain Clinic appointments` = `Number.of.patients.seen`) %>%
       rename(`No of 1st appointment pain clinic DNA's` = `Number.of.DNAs.for.1st.appt`)
     
-    ref_pp <- read.xlsx(files, sheet = 7, skipEmptyRows = TRUE,
-                        cols = 2:5, rows = c(8, 10)) %>%
-      rename(`Pain Psychology Referrals` = `Rejected.referrals`) %>%
-      rename(`Pain Psychology rejected referrals` = `Total.referrals`) %>%
+    # ref_pp <- read.xlsx(files, sheet = 7, skipEmptyRows = TRUE,
+    #                     cols = 2:5, rows = c(8, 10)) %>%
+    #   rename(`Pain Psychology Referrals` = `Rejected.referrals`) %>%
+    #   rename(`Pain Psychology rejected referrals` = `Total.referrals`) %>%
+    #   rename(`No of 1st pain psychology appointments` = `Number.of.patients.seen`) %>%
+    #   rename(`No of 1st appointments pain psychology DNA's` = `Number.of.DNAs.for.1st.appt`)
+    
+    # Include column 1 and then drop it to deal with a full row of NAs otherwise
+    # end up with empty df and cbind() doesn't work
+    ref_pp <- read.xlsx(path, sheet = 7, skipEmptyRows = TRUE,
+                        cols = 1:5, rows = c(8, 10)) %>%
+      select(-X1) %>%
+      rename(`Pain Psychology Referrals` = `Total.referrals`) %>%
+      rename(`Pain Psychology rejected referrals` = `Rejected.referrals`) %>%
       rename(`No of 1st pain psychology appointments` = `Number.of.patients.seen`) %>%
       rename(`No of 1st appointments pain psychology DNA's` = `Number.of.DNAs.for.1st.appt`)
     
