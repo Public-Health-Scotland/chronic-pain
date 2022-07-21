@@ -28,7 +28,7 @@ current_quarter <- map_dfr(files, read_submission, current_qtr_end, .id = NULL)
 
 ### 3 - Write file with current_quarter_end date included in file name  ----
 
-write_rds(current_quarter, paste0(path_input, current_qtr_end, "current.rds"))
+write_rds(current_quarter, paste0(path_input, current_qtr_end, "_current.rds"))
 
 
 ### END OF SCRIPT ###
