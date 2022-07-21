@@ -28,5 +28,8 @@ data/
 # Word documents #
 *.[dD][oO][cC][xX]
 
+# html x
+*.[hH][tT][mM][lL]
+
 # Allow lookups
 !lookups/
