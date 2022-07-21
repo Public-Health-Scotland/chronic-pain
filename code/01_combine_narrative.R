@@ -26,7 +26,7 @@ files <- list.files(here("data", "submissions"), full.names = TRUE)
 
 ### 2 - Use map() to run the read_narrative function
 
-notes <- map_dfr(files, read_narrative, current_qtr_end)
+notes <- map_dfr(files, read_narrative, current_qtr_end, .id = NULL)
 
 
 ### 3 - Write file with current_quarter_end date included in file name  ----

@@ -23,7 +23,7 @@ files <- list.files(here("data", "submissions"), full.names = TRUE)
 
 ### 2 - Use map_dfr() to run the read_submission function and produce one dataframe
 
-current_quarter <- map_dfr(files, read_submission, current_qtr_end)
+current_quarter <- map_dfr(files, read_submission, current_qtr_end, .id = NULL)
 
 
 ### 3 - Write file with current_quarter_end date included in file name  ----
