@@ -33,7 +33,7 @@ data <- read_excel(here("data", "input", paste0(previous_qtr_end, " ALL DATA.xls
 # This https://mgimond.github.io/ES218/Week02b.html suggests col types 
 # will be preserved. Is this correct? 
     
-current <- read_rds(here("data", "input", paste0(current_qtr_end, "current.rds")))
+current <- read_rds(here("data", "input", paste0(current_qtr_end, "_current.rds")))
     
     
 ### 2 - Bind the 2 dataframes ----
@@ -62,11 +62,15 @@ discovery$WaitWeeks <- str_extract(discovery$WaitWeeks, "[0-9]+")
 
 ### 4 - Write dataframes as 2 Excel files to the output folder ----
 
-# Write updated ALL DATA file
+# Write updated ALL DATA file that will be moved to stats drive
 write_xlsx(new_df, paste0(path_output, current_qtr_end, " ALL DATA.xlsx"))
+
+# Write .rds file to use for producing publication outputs and report
+write_rds(current_quarter, paste0(path_input, current_qtr_end, " ALL DATA.rds"))
 
 # Write file for Discovery team
 write_xlsx(discovery, paste0(path_output, current_qtr_end, " Chronic Pain WT - All Data.xlsx"))
+
 
 
 ### END OF SCRIPT ###
