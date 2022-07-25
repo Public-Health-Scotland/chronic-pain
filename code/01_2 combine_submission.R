@@ -1,7 +1,7 @@
 ################################################################################
 #                                                                                    
 #   Chronic Pain Publication                                                         
-#   Script: 01_combine_submission                                                     
+#   Script: 01_2 combine_submission                                                     
 #                                                                                    
 #   Written for: R Studio Server                                                     
 #   R Version: 3.6.1

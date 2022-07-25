@@ -1,7 +1,7 @@
 ################################################################################
 #                                                                                    
 #   Chronic Pain Publication                                                         
-#   Script: 01_combine_data_function                                                 
+#   Script: 01_3 combine_data_function                                                 
 #                                                                                    
 #   Written for: R Studio Server                                                     
 #   R Version: 3.6.1                                                                 

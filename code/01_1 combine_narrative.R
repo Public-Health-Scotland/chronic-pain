@@ -1,7 +1,7 @@
 ################################################################################
 #                                                                                    
 #   Chronic Pain Publication                                                         
-#   Script: 01_combine_narrative                                                     
+#   Script: 01_1 combine_narrative                                                     
 #                                                                                    
 #   Written for: R Studio Server                                                     
 #   R Version: 3.6.1
