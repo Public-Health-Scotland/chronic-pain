@@ -58,6 +58,9 @@ read_submission <-
                    values_to = "WaitTime") %>%
       select(-name)
     
+    # Trim trailing white space so that waiting times bands match ALL DATA file
+    waittime$WaitTime <- trimws(waittime$WaitTime)
+    
     
     ### 3 - Read in adjusted data ----
     
