@@ -41,12 +41,22 @@ read_submission <-
     
     # Read in WaitTime bands 
     
-    waittime <- read.xlsx(files, sheet = 5, skipEmptyRows = FALSE, 
-                       cols = 1:108, rows = c(4, 5)) %>%
-      select(-`If.there.are.no.patients.then."0".(zero).should.be.entered.`) %>%
-      gather(key = "key",
-             value = "WaitTime") %>%
-      select(-key)
+    # waittime <- read.xlsx(files, sheet = 5, skipEmptyRows = FALSE, 
+    #                    cols = 1:108, rows = c(4, 5)) %>%
+    #   select(-`If.there.are.no.patients.then."0".(zero).should.be.entered.`) %>%
+    #   gather(key = "key",
+    #          value = "WaitTime") %>%
+    #   select(-key)
+    
+    waittime <- read.xlsx(path, 
+                          sheet = 5, 
+                          skipEmptyRows = TRUE, 
+                          cols = 3:108, 
+                          rows = 5, 
+                          colNames = FALSE) %>%
+      pivot_longer(cols = `X1`:`X105`, 
+                   values_to = "WaitTime") %>%
+      select(-name)
     
     
     ### 3 - Read in adjusted data ----
