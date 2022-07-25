@@ -24,9 +24,17 @@ read_submission <-
       rename(`Report Date` = `current_qtr_end`)
     
     # Read in Board name from the B8 on NHS Board details sheet
-    board <- read.xlsx(files, sheet = 4, skipEmptyRows = TRUE, 
-                       cols = c(2, 2), rows = c(7, 8)) %>%
-      rename(`Health Board` = `Health.Board`)
+    # board <- read.xlsx(files, sheet = 4, skipEmptyRows = TRUE, 
+    #                    cols = c(2, 2), rows = c(7, 8)) %>%
+    #   rename(`Health Board` = `Health.Board`)
+    
+    board <- read.xlsx(files, 
+                       sheet = 4, 
+                       skipEmptyRows = TRUE, 
+                       cols = 2, 
+                       rows = 8, 
+                       colNames = FALSE) %>%
+      rename(`Health Board` = `X1`)
     
     
     ### 2 - Create WaitTime column ----
@@ -115,14 +123,26 @@ read_submission <-
     
     ### 7 - Create one dataframe for the Board  ----
     
+    # current_quarter <- left_join(adj, unadj, by = "WaitTime") %>%
+    #   cbind(ref_pc) %>%
+    #   cbind(ref_pp) %>%
+    #   cbind(removals) %>%
+    #   cbind(date) %>%
+    #   cbind(board) %>%
+    #   select(`Health Board`, `Report Date`, everything()) %>%
+    #   mutate(across(`adj patients waiting at pain clinic`:`Pain Psychology removal reasons`, as.numeric))
+    
     current_quarter <- left_join(adj, unadj, by = "WaitTime") %>%
-      cbind(ref_pc) %>%
-      cbind(ref_pp) %>%
-      cbind(removals) %>%
-      cbind(date) %>%
-      cbind(board) %>%
-      select(`Health Board`, `Report Date`, everything()) %>%
-      mutate(across(`adj patients waiting at pain clinic`:`Pain Psychology removal reasons`, as.numeric))
+      cbind(ref_pc,
+            ref_pp,
+            removals,
+            date,
+            board,
+            row.names = NULL) %>%
+      select(`Health Board`, 
+             `Report Date`, 
+             everything()) %>%
+      mutate(suppressWarnings(across(`adj patients waiting at pain clinic`:`Pain Psychology removal reasons`, as.numeric)))
     
   }
 
