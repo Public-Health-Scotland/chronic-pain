@@ -1,7 +1,7 @@
 ################################################################################
 #                                                                                    
 #   Chronic Pain Publication                                                         
-#   Script: 01_read_submission_function                                                     
+#   Script: read_submission_function                                                     
 #                                                                                    
 #   Written for: R Studio Server                                                     
 #   R Version: 3.6.1
