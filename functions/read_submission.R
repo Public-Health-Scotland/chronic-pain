@@ -48,7 +48,7 @@ read_submission <-
     #          value = "WaitTime") %>%
     #   select(-key)
     
-    waittime <- read.xlsx(path, 
+    waittime <- read.xlsx(files, 
                           sheet = 5, 
                           skipEmptyRows = TRUE, 
                           cols = 3:108, 
