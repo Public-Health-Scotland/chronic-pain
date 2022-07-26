@@ -20,14 +20,21 @@ read_narrative <-
   {
     ### 1 - Read in Board name ----
     
-    # Read in Board name from the B8 on NHS Board details sheet
-    board <- read.xlsx(files, sheet = 4, skipEmptyRows = TRUE, 
-                       cols = c(2, 2), rows = c(7, 8)) %>%
-      rename(`Health Board` = `Health.Board`)
+    # Read in Board name from B8 on NHS Board details sheet
+    board <- read.xlsx(files, 
+                       sheet = 4, 
+                       skipEmptyRows = TRUE, 
+                       cols = 2, 
+                       rows = 8, 
+                       colNames = FALSE) %>%
+      rename(`Health Board` = `X1`)
     
     ### 2 - Read in narrative ----
-    notes <- read.xlsx(files, sheet = 4, skipEmptyRows = TRUE, 
-                       cols = c(2, 2), rows = c(17, 41)) %>%
+    notes <- read.xlsx(files, 
+                       sheet = 4, 
+                       skipEmptyRows = TRUE, 
+                       cols = 2, 
+                       rows = c(17, 41)) %>%
       rename(`Board narrative` = `...1`)
     
     # Replace 2 lines of heading text with shorter line of text
