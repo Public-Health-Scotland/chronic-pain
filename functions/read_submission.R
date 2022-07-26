@@ -23,7 +23,7 @@ read_submission <-
     date <- as.data.frame(current_qtr_end) %>%
       rename(`Report Date` = `current_qtr_end`)
     
-    # Read in Board name from the B8 on NHS Board details sheet
+    # Read in Board name from B8 on NHS Board details sheet
     board <- read.xlsx(files, 
                        sheet = 4, 
                        skipEmptyRows = TRUE, 
