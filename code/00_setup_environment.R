@@ -52,7 +52,7 @@ path_submissions = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Submissions & emai
 path_alldata = "//PHI_conf/WaitingTimes/Chronic-Pain/Data/Database/"
 
 # Path for copying in lookup file for rate of referral calculation
-path_lookup = "//PHI_conf/WaitingTimes/Chronic-Pain/R development work/Lookups/Populationestimatemid2020_18+.xlsx"
+path_lookup = "//PHI_conf/WaitingTimes/Chronic-Pain/R development work/Lookups/Populationestimatemid2021_18+.xlsx"
 
 # Path for writing out the current quarter dataframe that will be used to update
 # the ALL DATA file
