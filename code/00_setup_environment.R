@@ -14,7 +14,7 @@
 
 # UPDATE - Last day of reporting quarter (ddmmyyyy)
 
-current_qtr_end <- lubridate::dmy(31122021)
+current_qtr_end <- lubridate::dmy(30062022)
 
 
 ### 1 - Load libraries required ----
