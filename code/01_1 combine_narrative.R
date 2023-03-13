@@ -4,7 +4,7 @@
 #   Script: 01_1 combine_narrative                                                     
 #                                                                                    
 #   Written for: R Studio Server                                                     
-#   R Version: 3.6.1
+#   R Version: 4.1.2
 #
 #   Packages required: here(1.0.1), purrr(0.3.4)
 #                      

@@ -4,7 +4,7 @@
 #   Script: 00_setup_environment                                                     
 #                                                                                    
 #   Written for: R Studio Server                                                     
-#   R Version: 3.6.1                                                                 
+#   R Version: 4.1.2                                                                 
 #                                                                                   
 #   Description: This script sets up the environment                                 
 #                                                                                   

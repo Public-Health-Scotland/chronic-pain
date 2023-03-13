@@ -4,7 +4,7 @@
 #   Script: 01_3 combine_data_function                                                 
 #                                                                                    
 #   Written for: R Studio Server                                                     
-#   R Version: 3.6.1                                                                 
+#   R Version: 4.1.2                                                                 
 #   Packages required: dplyr(1.0.1), readxl(1.3.1), stringr(1.4.0), tidyr(1.1.0)     
 #                      writexl(1.3), openxlsx(4.1.5)                                                    
 #                                                                                    
