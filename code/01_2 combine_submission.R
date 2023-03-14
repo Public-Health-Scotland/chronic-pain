@@ -6,7 +6,7 @@
 #   Written for: R Studio Server                                                     
 #   R Version: 4.1.2
 #
-#   Packages required: here(1.0.1), purrr(0.3.4)
+#   Packages required: here(1.0.1), purrr(1.0.1)
 #                      
 #                                                                                   
 #   Description: This script uses map_dfr to run the read_submisson function  

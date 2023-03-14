@@ -4,9 +4,9 @@
 #   Script: sum_groups_function                                                     
 #                                                                                    
 #   Written for: R Studio Server                                                     
-#   R Version: 3.6.1
+#   R Version: 4.1.2
 #
-#   Packages required: 
+#   Packages required: None
 #                                                                                   
 #   Description: This script creates the sum_groups function                                
 #                                                                                   

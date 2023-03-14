@@ -5,8 +5,8 @@
 #                                                                                    
 #   Written for: R Studio Server                                                     
 #   R Version: 4.1.2                                                                 
-#   Packages required: dplyr(1.0.1), readxl(1.3.1), stringr(1.4.0), tidyr(1.1.0)     
-#                      writexl(1.3), openxlsx(4.1.5)                                                    
+#   Packages required: dplyr(1.1.0), openxlsx(4.2.5.2), readxl(1.4.2), 
+#                      stringr(1.5.0), tidyr(1.3.0), writexl(1.4.2)                                                    
 #                                                                                    
 #   Description: This function combines the historical ALL DATA file                 
 #   with data from the Current Quarter                                               

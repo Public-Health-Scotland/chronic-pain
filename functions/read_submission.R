@@ -4,10 +4,11 @@
 #   Script: read_submission_function                                                     
 #                                                                                    
 #   Written for: R Studio Server                                                     
-#   R Version: 3.6.1
+#   R Version: 4.1.2
 #
-#   Packages required: dplyr(1.0.1), tidyr(1.1.0), openxlsx(4.1.5),
-#                      purrr(0.3.4)
+#   Packages required: dplyr(1.0.1), openxlsx(4.2.5.2), purrr(1.0.1), 
+#                      tidyr(1.3.0)
+#                       
 #                                                                                   
 #   Description: This script reads V3 of quarterly submission form                                 
 #                                                                                   

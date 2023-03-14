@@ -4,9 +4,11 @@
 #   Script: 01_combine_board_narrative                                               
 #                                                                                    
 #   Written for: R Studio Server                                                     
-#   R Version: 3.6.1                                                                 
-#   Packages required: dplyr(1.0.1), readxl(1.3.1), tidyr(1.1.0), writexl(1.3),      
-#                      stringr(1.4.0), here(1.0.1), openxlsx(4.1.5)                                                
+#   R Version: 4.1.2                                                                 
+#   Packages required: dplyr(1.1.0), here(1.0.1), openxlsx(4.2.5.2), 
+#                      readxl(1.4.2), stringr(1.5.0), tidyr(1.3.0), 
+#                      writexl(1.4.2)   
+#                                                                      
 #                                                                                    
 #   Description: This script reads the sheet = "NHS Board details",                  
 #                range = "C17:C41" from the 14 Board submissions and                 
